@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "*", maxAge = 3600, allowedHeaders = "*")
 @RequestMapping({"/user"})
 public class UserController {
-    @GetMapping
+    @GetMapping()
     public String getHello() {
         return "HEllo world";
     }
