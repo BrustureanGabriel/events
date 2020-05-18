@@ -1,4 +1,4 @@
-package com.events.server.events.server;
+package com.events.server.events.server.controller;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
