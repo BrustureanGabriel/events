@@ -1,0 +1,9 @@
+<div *ngIf="event">
+ <h3 matLine>{{event.id}} {{event.title}}</h3>
+  <p> Date: {{event.dates}}</p>
+  <p> Max number of volunteers: {{event.maxNumber}}</p>
+  <p matLine>Short description: {{event.description}}</p>
+  <button mat-raised-button matLine routerLink="/event-list/{{event.id}}"> Go to {{event.title}} event page</button>
+  <button mat-raised-button matLine>Participate</button>
+  <button mat-raised-button matLine (click)="deleteAction(event)" >x</button>
+</div>

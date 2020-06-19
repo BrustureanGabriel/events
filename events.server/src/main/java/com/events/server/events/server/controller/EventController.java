@@ -1,28 +1,43 @@
 package com.events.server.events.server.controller;
 
-import com.events.server.events.server.Event;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.events.server.events.server.domain.EventPlant;
+import com.events.server.events.server.service.EventService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600, allowedHeaders = "*")
 @RequestMapping({"/event"})
 public class EventController {
-    @GetMapping(path="/")
-    public List<Event> getEvents() {
-        List<Event> events= new ArrayList<>();
-        events.add(new Event(1,"Ev1"));
-        events.add(new Event(2,"Ev2"));
-        events.add(new Event(3,"Ev3"));
-        events.add(new Event(4,"Ev4"));
-        events.add(new Event(5,"Ev5"));
+    @Autowired
+    private EventService eventService;
 
-        return events;
+    @GetMapping(path ={"/{id}"})
+    public EventPlant findById(@PathVariable("id") Integer id){
+        return eventService.findById(id);
     }
+
+    @PostMapping(path="/")
+    public EventPlant create(@RequestBody EventPlant eventPlant){
+        return eventService.save(eventPlant);
+    }
+
+    @GetMapping(path="/")
+    public List<EventPlant> getEvents() {
+
+        return eventService.findAll();
+    }
+    @DeleteMapping(path ={"/{id}"})
+    public EventPlant delete(@PathVariable("id") Integer id) {
+        return eventService.delete(id);
+    }
+
+    @GetMapping(path="/user/{userId}")
+    public List<EventPlant> findEventsUserIsJoiningByUserId(@PathVariable("userId") Integer userId){
+        return eventService.findEventsUserIsJoiningByUserId(userId);
+    }
+
 
 }

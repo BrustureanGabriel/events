@@ -1,2 +1,14 @@
-<a routerLink="/user">User</a>
-<app-user></app-user>
+<mat-toolbar color="primary" style="margin:10px">
+  <mat-toolbar-row>
+    <button mat-button [matMenuTriggerFor]="title"> Menu</button>
+    <mat-menu #title="matMenu">
+      <button mat-menu-item [routerLink]="['event-list']">Events</button>
+      <button mat-menu-item [routerLink]="['user-list']">Users</button>
+    </mat-menu>
+  </mat-toolbar-row>
+</mat-toolbar>
+<button mat-raised-button color="warn" [routerLink]="['event-list-add']">Create Event</button>
+<br>
+<br/>
+<router-outlet></router-outlet>
+

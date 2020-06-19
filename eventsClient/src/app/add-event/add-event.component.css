@@ -1,0 +1,14 @@
+mat-label{
+  color: cornflowerblue;
+
+}
+mat-form-field{
+  background-color: aliceblue;
+  width: 25em;
+}
+mat-hint{
+  color: black;
+}
+button:hover{
+  color: brown;
+}
