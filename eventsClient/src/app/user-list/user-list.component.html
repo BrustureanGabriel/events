@@ -1,0 +1,11 @@
+<mat-list>
+  <mat-list-item *ngFor="let user of usersList">
+    <div>
+      <a routerLink="/user-list/{{user.id}}">
+        <span>
+        <app-user-list-item [user]="user"></app-user-list-item>
+        </span>
+      </a>
+    </div>
+  </mat-list-item>
+</mat-list>

@@ -1,0 +1,37 @@
+use organizer;
+drop table if exists event_plant;
+create table event_plant(
+  id int not null primary key,
+  dates date,
+  description varchar(255),
+  location varchar(255),
+  max_number int,
+  image_url varchar(255),
+  sponsor varchar(255),
+  title varchar(255)
+);
+insert into event_plant(dates,description,location,max_number,image_url,sponsor,title)
+values('2020-05-22','Event1','xyz',35,'src','sponsor','title1');
+insert into event_plant(dates,description,location,max_number,image_url,sponsor,title)
+values('2020-08-13','Event2','xyz',31,'src2','sponsor2','title2');
+insert into event_plant(dates,description,location,max_number,image_url,sponsor,title)
+values('2020-10-12','Event3','xyz',25,'src3','sponsor3','title3');
+insert into event_plant(dates,description,location,max_number,image_url,sponsor,title)
+values('2021-06-22','Event4','xyz',66,'src4','sponsor4','title4');
+
+insert into user_plant(first_name,last_name,mail,password,phone_number,type_user)
+values ('fn1','ln1','mail1','pass1','pn1','organizer');
+insert into user_plant(first_name,last_name,mail,password,phone_number,type_user)
+values ('fn2','ln2','mail2','pass2','pn2','volunteer');
+insert into user_plant(first_name,last_name,mail,password,phone_number,type_user)
+values ('fn3','ln3','mail3','pass3','pn3','oragnizer');
+insert into user_plant(first_name,last_name,mail,password,phone_number,type_user)
+values ('fn4','ln4','mail4','pass4','pn4','volunteer');
+
+insert into event_user(id_user,id_event) values (1,1);
+insert into event_user(id_user,id_event) values (1,2);
+insert into event_user(id_user,id_event) values (1,4);
+insert into event_user(id_user,id_event) values (3,3);
+insert into event_user(id_user,id_event) values (2,1);
+insert into event_user(id_user,id_event) values (4,3);
+insert into event_user(id_user,id_event) values (4,4);
