@@ -1,41 +1,44 @@
 package com.events.server.events.server.service;
 
-
-import com.events.server.events.server.domain.UserPlant;
-
+import com.events.server.events.server.domain.EventUser;
+import com.events.server.events.server.domain.User;
+import com.events.server.events.server.domain.UserDTO;
+import com.events.server.events.server.repository.EventUserRepository;
 import com.events.server.events.server.repository.UserRepository;
-import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private EventUserRepository eventUserRepository;
 
-    public UserPlant save(UserPlant userPlant) {
-        return userRepository.save(userPlant);
+    @Transactional
+    public void delete(Integer id) {
+        userRepository.deleteById(id);
+        List<EventUser> eventUserLinks = eventUserRepository.findAllIdEventsByIdUser(id);
+        eventUserRepository.deleteAll(eventUserLinks);
     }
 
-    public UserPlant delete(int id) {
-        UserPlant userPlant = findById(id);
-        if(userPlant != null){
-            userRepository.delete(userPlant);
-        }
-        return userPlant;
+    public List<UserDTO> findAll() {
+        return userRepository.findAll().stream().map(this::mapToUserDTO).collect(Collectors.toList());
     }
 
-    public List<UserPlant> findAll() {
-        return Lists.newArrayList(userRepository.findAll());
+    public UserDTO findById(Integer id) {
+        return userRepository.findById(id).map(this::mapToUserDTO).orElse(null);
     }
 
-    public UserPlant findById(int id) {
-        return userRepository.findById(id).get();
+    private UserDTO mapToUserDTO(User user) {
+        return new UserDTO(user.getId(), user.getUsername(),
+                user.getEmail(), user.getRoles(),
+                user.getFirstName(), user.getLastName(),
+                user.getPhoneNumber());
     }
-
 }
-
-

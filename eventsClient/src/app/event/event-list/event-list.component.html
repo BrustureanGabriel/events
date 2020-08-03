@@ -1,0 +1,27 @@
+<div class="container pt-3 pb-2" *ngIf="isOrganiser">
+  <div class="m-auto text-center">
+    <button type="button" class="mr-3" mat-raised-button routerLink="/event-list-add">Add new event</button>
+    <button type="button" class="mr-3" mat-raised-button (click)="loadEventsCreatedByCurrentUser()">Display events
+      created by me
+    </button>
+    <button type="button" class="mr-3" mat-raised-button (click)="loadAllEventsAvailableForUser()">Display all events
+    </button>
+  </div>
+</div>
+
+<div class="container pt-3 pb-2" *ngIf="!isOrganiser">
+  <div class="m-auto text-center">
+    <button type="button" class="mr-3" mat-raised-button (click)="loadAllPastEvents()">Display passed events that I've
+      joined
+    </button>
+    <button type="button" class="mr-3" mat-raised-button (click)="loadAllEventsAvailableForUser()">Display all events
+    </button>
+  </div>
+</div>
+
+<mat-list>
+  <mat-list-item *ngFor="let event of eventsList">
+    <app-forest-event-list-item class="m-auto" [event]="event"></app-forest-event-list-item>
+  </mat-list-item>
+</mat-list>
+

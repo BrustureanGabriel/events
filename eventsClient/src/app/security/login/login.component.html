@@ -1,0 +1,24 @@
+<div class="view" style="background-image: url('https://curlytales.com/wp-content/uploads/2019/06/shutterstock_604290230-min-1280x720.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+  <div class="container col-lg-4">
+  <h1 class="text-center text-white">Login</h1>
+  <div class="card">
+    <div class="card-body">
+      <form class="form-group">
+        <div class="alert alert-warning" *ngIf='invalidLogin'>{{errorMessage}}</div>
+        <div class="alert alert-success" *ngIf='loginSuccessful'>{{successMessage}}</div>
+        <div class="form-group">
+          <label for="username">Username:</label>
+          <input type="text" class="form-control" id="username" [(ngModel)]="username" placeholder="Enter User Name"
+                 name="username">
+        </div>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" class="form-control" [(ngModel)]="password" id="password" placeholder="Enter password"
+                 name="password">
+        </div>
+        <button (click)=handleLogin() class="btn btn-success">Login</button>
+      </form>
+    </div>
+  </div>
+</div>
+</div>

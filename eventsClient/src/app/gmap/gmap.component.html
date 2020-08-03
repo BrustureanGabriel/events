@@ -1,10 +1,10 @@
 <google-map
-  height="500px"
+  height="30rem"
   width="100%"
   [zoom]="zoom"
   [center]="center"
   [options]="options"
-  (mapClick)="click($event)"
+  (mapClick)="addMarker()"
 >
   <map-marker
     #markerElem
@@ -17,11 +17,15 @@
   >
   </map-marker>
 
-  <map-info-window>{{ infoContent }}</map-info-window>
+  <map-info-window>{{infoContent}}</map-info-window>
 </google-map>
 
-<button (click)="zoomIn()">Zoom in</button>
-<button (click)="zoomOut()">Zoom out</button>
-<button (click)="logCenter()">Log center</button>
-<button (click)="addMarker()">Add marker</button>
-<mat-label>{{this.testCenter}}</mat-label>
+<div class="pt-3">
+  <button class="mr-1" (click)="zoomIn()">Zoom in</button>
+  <button class="mr-1" (click)="zoomOut()">Zoom out</button>
+  <button class="mr-1" *ngIf="isEditing" (click)="addMarker()">Add marker & save location</button>
+  <button class="mr-1" *ngIf="isEditing" (click)="clearLocation()">Clear selected location</button>
+</div>
+<div class="pt-3" *ngIf="this.markers[0] && this.markers[0].position && isEditing">Location marked at coordinates
+  [{{this.markers[0].position.lat}}, {{this.markers[0].position.lng}}]
+</div>

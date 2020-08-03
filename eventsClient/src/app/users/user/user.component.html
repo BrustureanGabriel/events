@@ -1,0 +1,11 @@
+<mat-card *ngIf="user">
+  <mat-card-content>
+    <h2>Name: {{user.lastName}} {{user.firstName}}</h2>
+    <h2>Tipul de user:</h2>
+    <h3>{{user.lastName}} este: {{user.roles[0]}}</h3>
+    <h2>Informatii de contact: </h2>
+    <h3>email: {{user.email}}</h3>
+    <h3>phone number: {{user.phoneNumber}}</h3>
+  </mat-card-content>
+
+</mat-card>

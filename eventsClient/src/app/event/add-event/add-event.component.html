@@ -1,0 +1,62 @@
+<div class="view"
+     style="background-image: url('https://curlytales.com/wp-content/uploads/2019/06/shutterstock_604290230-min-1280x720.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+  <div class="container m-auto pt-5">
+    <h1 class="text-center text-white">Create a new event</h1>
+    <div class="card">
+      <div class="card-body">
+        <form class="form-group">
+          <div class="row">
+            <label for="title" class="col-4 col-form-label">Please add a title for the event</label>
+            <div class="col-8">
+              <input type="text" class="form-control" id="title" [(ngModel)]="event.title" placeholder="Title"
+                     name="title">
+            </div>
+          </div>
+          <div class="pt-3">
+            <app-gmap (centerPosition)="updateMapCoordinates($event)" [isEditing]="true"></app-gmap>
+          </div>
+
+          <div class="row pt-3">
+            <label for="maxNumberOfVolunteers" class="col-4 col-form-label">Please add the max number of
+              volunteers</label>
+            <div class="col-8">
+              <input type="number" class="form-control" id="maxNumberOfVolunteers" [(ngModel)]="event.maxNumber"
+                     placeholder="Max number of volunteers" name="maxNumberOfVolunteers">
+            </div>
+          </div>
+
+          <div class="row pt-5">
+            <label for="inageUrl" class="col-4 col-form-label">Please add an image url for the event</label>
+            <div class="col-8">
+              <input type="text" class="form-control" id="inageUrl" [(ngModel)]="event.imageUrl"
+                     placeholder="Image url" name="inageUrl">
+            </div>
+          </div>
+
+          <div class="row pt-5">
+            <label for="plannedDate" class="col-4 col-form-label">Please select the date of the event</label>
+            <div class="col-8">
+              <input class="form-control" type="date" id="plannedDate" name="plannedDate"
+                     [(ngModel)]="event.plannedDate">
+            </div>
+          </div>
+
+          <div class="row pt-5">
+            <label for="description" class="col-4 col-form-label">Please add a description for the event</label>
+            <div class="col-8">
+              <textarea class="form-control" type="text" id="description" [(ngModel)]="event.description"
+                        placeholder="Description" name="description" rows="5">
+              </textarea>
+            </div>
+          </div>
+
+          <div class="col pt-5 ">
+            <div class="float-right">
+              <button type="submit" (click)=addEvent() class="btn btn-success">Create</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

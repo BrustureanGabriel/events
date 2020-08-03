@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {Events} from './models/event.model';
+import {EventDTO} from './security/models/eventDTO';
 import {HttpClient} from '@angular/common/http';
-import {EventService} from './event.service';
+import {EventService} from './service/event.service';
 
 @Component({
   selector: 'app-root',

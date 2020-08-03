@@ -14,21 +14,32 @@ public class EventUserController {
     @Autowired
     private EventUserService eventUserService;
 
-    @GetMapping(path ={"/{id}"})
-    public EventUser findById(@PathVariable("id") Integer id){
-        return eventUserService.findById(id);
+    @GetMapping(path = {"/{eventId}"})
+    public Integer findAllByEventId(@PathVariable("eventId") Integer id) {
+        return eventUserService.findAllByEventId(id);
+    }
+
+    @GetMapping(path = {"/{eventId}/{userId}"})
+    public boolean isUserAlreadyRegistered(@PathVariable("eventId") Integer eventId, @PathVariable("userId") Integer userId) {
+        return eventUserService.isUserAlreadyRegistered(eventId, userId);
+    }
+
+    @DeleteMapping(path = {"/{eventId}/{userId}"})
+    public void abandonEvent(@PathVariable("eventId") Integer eventId, @PathVariable("userId") Integer userId) {
+        eventUserService.abandonEvent(eventId, userId);
     }
 
     @PostMapping
-    public EventUser create(@RequestBody EventUser user){
+    public EventUser create(@RequestBody EventUser user) {
         return eventUserService.save(user);
     }
 
-    @GetMapping(path="/")
+    @GetMapping(path = "/")
     public List<EventUser> getUsers() {
         return eventUserService.findAll();
     }
-    @DeleteMapping(path ={"/{id}"})
+
+    @DeleteMapping(path = {"/{id}"})
     public EventUser delete(@PathVariable("id") Integer id) {
         return eventUserService.delete(id);
     }

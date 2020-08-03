@@ -11,5 +11,9 @@ public interface EventUserRepository extends CrudRepository<EventUser, Integer> 
 
     void deleteAllByIdEvent(Integer idEvent);
 
-     List<EventUser> findAllIdEventsByIdUser(Integer idUser);
+    List<EventUser> findAllIdEventsByIdUser(Integer idUser);
+
+    List<EventUser> findAllByIdEventAndIdUser(Integer eventId, Integer userId);
+
+    List<EventUser> findAllByIdEvent(Integer eventId);
 }

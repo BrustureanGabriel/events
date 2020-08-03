@@ -1,0 +1,58 @@
+<div class="h1 text-center pt-3">Event list</div>
+
+<div class="form-group col-9 m-auto pt-3 font-weight-bold">
+  <label for="title">Event search</label>
+  <input type="text" class="form-control" id="title" [(ngModel)]="title"
+         (focusout)="searchForTitle()">
+</div>
+
+<div class="col-9 m-auto pt-3">
+  <table class="table table-bordered table-hover">
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Owner id</th>
+      <th>Title</th>
+      <th>Location</th>
+      <th>Max number of participants</th>
+      <th>Number of sponsors</th>
+      <th>Description</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let event of filteredEventList">
+      <th>{{event.id}}</th>
+      <th>{{event.ownerId}}</th>
+      <th class="title">{{event.title}}</th>
+      <th>{{event.location}}</th>
+      <th>{{event.maxNumber}}</th>
+      <th>{{event.sponsors.length}}</th>
+      <th class="description">{{event.description}}</th>
+      <th>
+        <mat-icon class="icon" (click)="openDeleteModal(event, deleteModal)">delete</mat-icon>
+      </th>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #deleteModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Confirmation dialog</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <div>Are you sure you want to delete this event?</div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('delete')">Delete</button>
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('cancel')">Cancel</button>
+  </div>
+</ng-template>

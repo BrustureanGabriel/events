@@ -1,0 +1,17 @@
+button:hover {
+  color: crimson;
+}
+
+.description {
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 75rem;
+}
+
+.event-container{
+  border-radius: 0.5rem;
+  box-shadow: 0 0 5px #888888
+
+}
